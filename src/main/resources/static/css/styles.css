@@ -1,0 +1,180 @@
+/* 
+    Created on : 23/04/2021, 10:47:59 PM
+    Author     : apuello
+*/
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.material-icons{
+    line-height: 0 !important;
+}
+
+.my-container{
+    display: flex;
+}
+
+.active{
+    background: #FBFCFC;
+    width: 186px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.active .text-list{
+    color: #32ae7e !important;
+    text-decoration: none;
+}
+
+i{
+    font-size: 20px;
+}
+
+.dropdown-item{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.dropdown-item i{
+    color: #AF7AC5;
+}
+
+.active .bx{
+    color: #32ae7e;
+}
+
+.sidebar{
+    background: #32ae7e;
+    color: #FBFCFC;
+    width: 15%;
+    padding: 15px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.sidebar-list{
+    margin-top: 30px;
+    list-style: none;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    padding-left: 5px;
+}
+
+.list-items{
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-item:focus{
+    background: transparent;
+    color: #AF7AC5;
+}
+
+
+.list-items .text-list{
+    color: #E5E7E9;
+    text-decoration: none;
+}
+
+.text-list{
+    font-size: 20px;
+}
+
+.main{
+    background: #FBFCFC;
+    width: 92%;
+}
+
+.header{
+    background: #FBFCFC;
+    text-align: right;
+    padding: 10px;
+}
+
+.bxs-user{
+    color: #AF7AC5;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    border: 1px solid #AF7AC5;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+.welcome{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.title-logo{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #FBFCFC;
+    font-size: 20px;
+}
+
+.body{
+    padding: 10px 20px 0 20px;
+}
+
+.container{
+    margin-top: 10px;
+    height: auto;
+    padding: 10px 15px 10px 15px;
+    box-shadow: 0 1px 12px 0 rgb(46 61 73 / 20%);
+}
+
+.card{
+    padding: 10px;
+}
+
+table thead {
+    background: #32ae7e;
+    color: #fff;
+}
+
+.btn-add{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float: right;
+    background: #fff;
+    border: 1px solid #2C3E50;
+    background: #2C3E50;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.btn-add:focus{
+    outline: none;
+}
+
+.btn-add i{
+    color: #fff;
+}
+
+.form-control{
+    border: 0;
+    border-bottom: 1px solid #aab7b8;
+    border-radius: 0;
+}
+
+.bxs-pencil{
+    font-size: 22px;
+    color: #3498DB;
+    cursor: pointer;
+}
+
+.bxs-trash-alt{
+    font-size: 22px;
+    color: #E74C3C;
+    cursor: pointer;
+}
+
+.error{
+    border-bottom: 2px solid #E74C3C;
+    transition: 0.5s;
+}

@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="/fonts/fontawesome-all.min.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     </head>
     <body>
         <div class="center">
@@ -33,5 +34,10 @@
                 </div>
             </div>
         </div>
+        <script>
+            $('.btn').on('click', function () {
+               window.location = '/dashboard';
+            });
+        </script>
     </body>
 </html>

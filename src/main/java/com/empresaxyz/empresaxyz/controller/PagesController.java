@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PagesController {
     
-    @GetMapping("/login")
+    @GetMapping("/")
     public String login(){
         return "login";
     }
     
     @GetMapping("/dashboard")
     public String index(){
-        return "index";
+        return "dashboard";
+    }
+    
+    @GetMapping("/vendedores")
+    public String vendedores(){
+        return "vendedores";
     }
 }
