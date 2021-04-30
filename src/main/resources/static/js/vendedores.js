@@ -23,7 +23,7 @@ $('#btnSave').on('click', function () {
             dirreccion: $('#direc').val(),
             telefono: $('#telefono').val()
         };
-        Service(JSON.stringify(JsonData), "vendors/save", "POST", (res) => {
+        PostService(JSON.stringify(JsonData), "vendors/save", (res) => {
             $('#modalVende').modal('hide');
             LoadTable();
         });
@@ -32,7 +32,7 @@ $('#btnSave').on('click', function () {
 
 function LoadTable() {
     $('#grid-vendedores tbody tr').remove();
-    Service(JSON.stringify({}), "vendors/get", "POST", (res) => {
+    GetService("/vendors/get", (res) => {
         $.each(res, (i, e) => {
             $('#grid-vendedores tbody').append(`<tr>
                 <td>${e.nombre}</td>
@@ -45,7 +45,7 @@ function LoadTable() {
         });
         $('#grid-vendedores tbody tr td').find('.bxs-pencil').on('click', function () {
             id = $(this).attr('data-id');
-            Service(JSON.stringify({}), `vendors/getById/${id}`, "POST", (res) => {
+            GetService(`vendors/getById/${id}`, (res) => {
                 ResetForm('#modalVende');
                 $('#btnSave').attr('data-id', res.id);
                 $('#nombre').val(res.nombre);
@@ -61,10 +61,7 @@ function LoadTable() {
         $('#grid-vendedores tbody tr td').find('.bxs-trash-alt').on('click', function () {
             id = $(this).attr('data-id');
             if (confirm('¿Quiere eliminar este vendedor?')) {
-                Service(JSON.stringify({}),
-                        `vendors/deleteById/${id}`,
-                        "POST",
-                        () => LoadTable());
+                GetService(`vendors/deleteById/${id}`,() => LoadTable());
             }
         });
     });

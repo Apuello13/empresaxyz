@@ -9,9 +9,7 @@
     <body>
         <div class="container" layout:fragment="content">
             <div class="container-add">
-                <button class="btn-add">
-                    <i class='bx bx-plus'></i>
-                </button>
+                <button class="btn-add bx bx-plus" title="Agregar"></button>
             </div>
             <table id="grid-vendedores" class="table">
                 <thead>
@@ -24,7 +22,11 @@
                         <th data-formatter="delete">Eliminar</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    <tr class="empty">
+                        <td colspan="6">No hay datos para mostrar</td>
+                    </tr>
+                </tbody>
             </table>
             <div class="modal fade" id="modalVende" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">

@@ -18,13 +18,12 @@
 
 .active{
     background: #FBFCFC;
-    width: 186px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
 }
 
 .active .text-list{
-    color: #32ae7e !important;
+    color: #27AE60 !important;
     text-decoration: none;
 }
 
@@ -41,14 +40,15 @@ i{
 }
 
 .active .bx{
-    color: #32ae7e;
+    color: #27AE60;
 }
 
 .sidebar{
-    background: #32ae7e;
+    background: #27AE60;
     color: #FBFCFC;
     width: 15%;
     padding: 15px;
+    padding-right: 0;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
@@ -59,6 +59,18 @@ i{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
     padding-left: 5px;
+    max-height: 550px;
+    overflow-x: auto;
+}
+
+.sidebar-list::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+}
+
+.sidebar-list::-webkit-scrollbar-thumb{
+    background: #fff;
+    border-radius: 3px;
 }
 
 .list-items{
@@ -131,8 +143,12 @@ i{
 }
 
 table thead {
-    background: #32ae7e;
-    color: #fff;
+    color: #27AE60;
+}
+
+tbody{
+    height: 350px;
+    overflow-y: auto;
 }
 
 .btn-add{
@@ -140,20 +156,21 @@ table thead {
     flex-direction: column;
     justify-content: center;
     float: right;
-    background: #fff;
     border: 1px solid #2C3E50;
-    background: #2C3E50;
+    background: #fff;
     border-radius: 8px;
     padding: 8px;
     margin-bottom: 8px;
+    color: #2C3E50;
+}
+
+.btn-add:hover{
+    background: #2C3E50;
+    color: #fff;
 }
 
 .btn-add:focus{
     outline: none;
-}
-
-.btn-add i{
-    color: #fff;
 }
 
 .form-control{
@@ -177,4 +194,8 @@ table thead {
 .error{
     border-bottom: 2px solid #E74C3C;
     transition: 0.5s;
+}
+
+.empty{
+    text-align: center;
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,19 +34,19 @@ public class VendedoresController {
         return vendedoresDao.save(vendedor);
     }
     
-    @RequestMapping(value = "/get", method = RequestMethod.POST)
+    @GetMapping(value = "/get")
     @ResponseBody
     public List<Vendedores> getVendedores(){
         return vendedoresDao.findAll();
     }
     
-    @RequestMapping(value = "/getById/{id}", method = RequestMethod.POST)
+    @GetMapping(value = "/getById/{id}")
     @ResponseBody
     public Optional<Vendedores> getVendedorById(@PathVariable("id") Long id){
         return vendedoresDao.findById(id);
     }
     
-    @RequestMapping(value = "/deleteById/{id}", method = RequestMethod.POST)
+    @GetMapping(value = "/deleteById/{id}")
     @ResponseBody
     public void deleteVendedorById(@PathVariable("id") Long id){
         vendedoresDao.deleteById(id);
