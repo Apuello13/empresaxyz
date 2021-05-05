@@ -146,11 +146,6 @@ table thead {
     color: #27AE60;
 }
 
-tbody{
-    height: 350px;
-    overflow-y: auto;
-}
-
 .btn-add{
     display: flex;
     flex-direction: column;
