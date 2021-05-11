@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+    <head>
+        <title>Cotizaciones</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container" layout:fragment="content">
+            <div class="container-add">
+                <button class="btn-add bx bx-plus" title="Agregar"></button>
+            </div>
+            <br>
+            <div>
+                <div class="form-group">
+                    <label>Cliente</label>
+                    <select class="my-form-control" style="width: 30%">
+                        <option>Seleccione</option>
+                        <option>Andres Puello</option>
+                        <option>Rodrigo Ortega</option>
+                        <option>Roberto Ramos</option>
+                    </select>
+                </div>
+                <div style="display: flex">
+                    <div class="container-list">
+                        <h4 style="align-self: center">Sus cotizaciones</h4>
+                        <ul class="cotizacion-list">
+                            <li>
+                                <div>
+                                    <span>Fecha</span>
+                                    <span style="float: right;">Opciones</span>
+                                </div>
+                                <div>
+                                    <span>Descripcion</span>
+                                    <span style="float: right;">Porcentaje</span>
+                                </div>
+                            </li>
+                            <li>Hola :3</li>
+                            <li>Hola :3</li>
+                        </ul>
+                    </div>
+                    <div class="container-details"></div>
+                </div>
+            </div>
+        </div>
+        <script src="./js/cotizaciones.js"></script>
+    </div>
+</body>
+</html>

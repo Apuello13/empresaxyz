@@ -29,4 +29,9 @@ public class PagesController {
     public String cliente(){
         return "cliente";
     }
+    
+    @GetMapping("/cotizaciones")
+    public String cotizaciones(){
+        return "cotizaciones";
+    }
 }

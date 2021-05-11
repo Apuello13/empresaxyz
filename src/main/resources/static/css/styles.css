@@ -243,3 +243,24 @@ table thead {
     font-weight: bold;
     font-size: xx-large;
 }
+
+.cotizacion-list{
+    list-style: none;
+    display: contents;
+    margin: 0;
+}
+
+.cotizacion-list li{
+    height: 70px;
+}
+
+.container-list{
+    width: 30%;
+    padding: 5px;
+    padding-right: 10px;
+}
+
+.container-details{
+    width: 70%;
+    border-left: 1px solid #CCD1D1;
+}
