@@ -1,10 +1,13 @@
 package com.empresaxyz.empresaxyz.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +31,13 @@ public class Cliente {
     private String empresa;
     @Column
     private String correo;
+    @OneToMany(mappedBy = "cliente")
+    private List<Cotizacion> cotizaciones;
+
+    public Cliente() {
+        super();
+        cotizaciones = new ArrayList<Cotizacion>();
+    }
 
     public Long getId() {
         return id;

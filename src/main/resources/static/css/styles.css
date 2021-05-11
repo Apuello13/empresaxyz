@@ -168,10 +168,22 @@ table thead {
     outline: none;
 }
 
-.form-control{
+.my-form-control{
+    display: block;
     border: 0;
     border-bottom: 1px solid #aab7b8;
     border-radius: 0;
+    height: 40px;
+    width: 100%;
+    background: #fff;
+}
+
+.my-form-control select {
+    background: transparent;
+}
+
+.my-form-control:focus{
+    outline: none;
 }
 
 .bxs-pencil{

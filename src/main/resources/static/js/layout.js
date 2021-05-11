@@ -33,7 +33,7 @@ $('.bx-log-out').on('click', function () {
 
 function ResetForm(modal) {
     $('#btnSave').attr('data-id', 0);
-    $(modal).find('.form-control').val('').removeClass('error');
+    $(modal).find('.my-form-control').val('').removeClass('error');
 }
 
 function isJsonValidate(Json) {

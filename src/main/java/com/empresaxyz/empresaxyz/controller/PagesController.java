@@ -24,4 +24,9 @@ public class PagesController {
     public String vendedores(){
         return "vendedores";
     }
+    
+    @GetMapping("/usuarios")
+    public String usuarios(){
+        return "usuarios";
+    }
 }

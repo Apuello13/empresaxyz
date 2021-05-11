@@ -16,5 +16,4 @@ public class EmpresaxyzApplication {
     public LayoutDialect layoutDialect() {
         return new LayoutDialect();
     }
-
 }

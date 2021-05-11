@@ -5,7 +5,7 @@
  */
 package com.empresaxyz.empresaxyz.dao;
 
-import com.empresaxyz.empresaxyz.entity.Vendedores;
+import com.empresaxyz.empresaxyz.entity.Vendedor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +14,4 @@ import org.springframework.stereotype.Repository;
  * @author apuello
  */
 @Repository
-public interface VendedoresDao extends JpaRepository<Vendedores, Long>{
-    
-}
+public interface VendedoresDao extends JpaRepository<Vendedor, Long>{}

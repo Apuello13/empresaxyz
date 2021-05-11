@@ -6,7 +6,7 @@
 package com.empresaxyz.empresaxyz.controller;
 
 import com.empresaxyz.empresaxyz.dao.VendedoresDao;
-import com.empresaxyz.empresaxyz.entity.Vendedores;
+import com.empresaxyz.empresaxyz.entity.Vendedor;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,19 +30,19 @@ public class VendedoresController {
     
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Vendedores saveVendedor(@RequestBody Vendedores vendedor){
+    public Vendedor saveVendedor(@RequestBody Vendedor vendedor){
         return vendedoresDao.save(vendedor);
     }
     
     @GetMapping(value = "/get")
     @ResponseBody
-    public List<Vendedores> getVendedores(){
+    public List<Vendedor> getVendedores(){
         return vendedoresDao.findAll();
     }
     
     @GetMapping(value = "/getById/{id}")
     @ResponseBody
-    public Optional<Vendedores> getVendedorById(@PathVariable("id") Long id){
+    public Optional<Vendedor> getVendedorById(@PathVariable("id") Long id){
         return vendedoresDao.findById(id);
     }
     

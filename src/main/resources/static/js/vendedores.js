@@ -51,7 +51,7 @@ function LoadTable() {
                 $('#nombre').val(res.nombre);
                 $('#apellido').val(res.apellido);
                 $('#iden').val(res.identificacion);
-                $('#fecha_naci').val(res.fecha_naci);
+                $('#fecha_naci').text(new Date(res.fecha_naci).toLocaleDateString());
                 $('#direc').val(res.dirreccion);
                 $('#telefono').val(res.telefono);
                 $('#modalVende').modal('show');
