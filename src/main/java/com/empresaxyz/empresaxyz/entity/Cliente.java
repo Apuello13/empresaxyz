@@ -102,6 +102,4 @@ public class Cliente {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-    
 }

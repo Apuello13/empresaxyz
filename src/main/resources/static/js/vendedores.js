@@ -16,6 +16,8 @@ $('#btnSave').on('click', function () {
     if (isJsonValidate(Json)) {
         JsonData = {
             id: !$(this).attr('data-id') ? 0 : $(this).attr('data-id'),
+            username : $('#username').val(),
+            password : $('#password').val(),
             nombre: $('#nombre').val(),
             apellido: $('#apellido').val(),
             identificacion: $('#iden').val(),
@@ -48,6 +50,8 @@ function LoadTable() {
             GetService(`vendors/getById/${id}`, (res) => {
                 ResetForm('#modalVende');
                 $('#btnSave').attr('data-id', res.id);
+                $('#username').val(res.username);
+                $('#password').val(res.password);
                 $('#nombre').val(res.nombre);
                 $('#apellido').val(res.apellido);
                 $('#iden').val(res.identificacion);
