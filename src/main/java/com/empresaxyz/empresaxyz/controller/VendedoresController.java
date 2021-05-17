@@ -51,4 +51,11 @@ public class VendedoresController {
     public void deleteVendedorById(@PathVariable("id") Long id){
         vendedoresDao.deleteById(id);
     }
+    
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public List<String> loginVendedor(@RequestBody Vendedor vendedor){
+        return vendedoresDao.autenticar(vendedor.getUsername(), vendedor.getPassword());
+    }
+    
 }
