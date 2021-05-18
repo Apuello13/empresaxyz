@@ -34,4 +34,8 @@ public class PagesController {
     public String cotizaciones(){
         return "cotizaciones";
     }
+    @GetMapping("/producto")
+    public String producto(){
+        return "producto";
+    }
 }
