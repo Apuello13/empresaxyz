@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -31,6 +33,7 @@ public class Vendedor {
     private String nombre;
     private String apellido;
     private String identificacion;
+    @Temporal( TemporalType.DATE )
     private Date fecha_naci;
     private String dirreccion;
     private String telefono;

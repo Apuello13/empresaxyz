@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -25,30 +26,40 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/produc")
 public class ProductosController {
+
     @Autowired
     private ProductosDao productoD;
-     @RequestMapping(value = "/saveP", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/saveP", method = RequestMethod.POST)
     @ResponseBody
-       public Productos saveProducto(@RequestBody Productos productos){
-        return productoD.save(productos);
+    public Productos saveProducto(@RequestBody Productos productos) {
+        if (productoD.existsByCodigo(productos.getCodigo()) & productos.getId() == 0) {
+            return productos = null;
+        } else {
+            return productoD.save(productos);
+        }
     }
-     //LISTAR
-    @GetMapping(value ="/get")
+    //LISTAR
+
+    @GetMapping(value = "/get")
     @ResponseBody
-    public List<Productos> getPro(){
-        return productoD.findAll();
-    }
-     //Consultar       
+    public List<Productos> getPro(@RequestParam String nombre) {
+        if (nombre == "") {
+            return productoD.findAll();
+        } else {
+            return productoD.findByNombreIsContaining(nombre);
+        }
+    }    
+
     @GetMapping(value = "/getById/{id}")
     @ResponseBody
-    public Optional<Productos> gitPro(@PathVariable("id")Long id){
-       return productoD.findById(id);
+    public Optional<Productos> gitPro(@PathVariable("id") Long id) {
+        return productoD.findById(id);
     }
 
-    @GetMapping(value ="/eliminarBy/{id}")
+    @GetMapping(value = "/eliminarBy/{id}")
     @ResponseBody
-    public void eliminarPro(@PathVariable("id") long id){
+    public void eliminarPro(@PathVariable("id") long id) {
         productoD.deleteById(id);
     }
-    
 }

@@ -17,6 +17,10 @@
     display: flex;
 }
 
+textarea{
+	resize: none;
+}
+
 .active{
     background: #FBFCFC;
     border-top-left-radius: 8px;
@@ -47,7 +51,7 @@ i{
 .sidebar{
     background: #27AE60;
     color: #FBFCFC;
-    width: 15%;
+    width: 17%;
     padding: 15px;
     padding-right: 0;
     border-top-right-radius: 20px;
@@ -96,7 +100,7 @@ i{
 
 .main{
     background: #FBFCFC;
-    width: 92%;
+    width: 90%;
 }
 
 .header{
@@ -216,6 +220,7 @@ table thead {
 }
 
 .empty{
+    display: none;
     text-align: center;
 }
 
@@ -251,7 +256,13 @@ table thead {
 }
 
 .cotizacion-list li{
-    height: 70px;
+    padding: 10px;
+    height: auto;
+    border-radius: 5px;
+    border-left: 2px solid #ec7063;
+    box-shadow: 0 5px 8px #ccd1d1;
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .container-list{
@@ -263,4 +274,38 @@ table thead {
 .container-details{
     width: 70%;
     border-left: 1px solid #CCD1D1;
+}
+
+#search{
+    border: 0;
+    border-bottom: 1px solid #b2babb;
+    width: 50%;
+    padding-top: 10px;
+    height: 30px;
+}
+
+#search:focus{
+    outline: none;
+}
+
+.list-detalle{
+    display: contents;
+    list-style: none;
+}
+
+.list-detalle li{
+    border-bottom: 1px dotted #aeb6bf;
+}
+
+.details{
+    padding: 10px;
+}
+
+.footer{
+    position: absolute;
+    bottom: 40%;
+}
+
+.body-details{
+    max-height: 110px;
 }

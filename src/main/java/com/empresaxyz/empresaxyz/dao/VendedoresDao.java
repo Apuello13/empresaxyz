@@ -18,6 +18,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface VendedoresDao extends JpaRepository<Vendedor, Long>{
-    @Query(value = "SELECT id, nombre FROM vendedores WHERE username = :username and password = :password", nativeQuery = true)
-    List<String> autenticar(@Param("username") String username, @Param("password") String password);
+    
+    public Vendedor findByUsernameAndPassword(String username, String password);
+    public boolean existsByIdentificacion(String identificacion);
+    public List<Vendedor> findByNombreIsContaining(String name);
 }

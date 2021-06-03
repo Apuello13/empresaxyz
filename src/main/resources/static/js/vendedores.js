@@ -16,8 +16,8 @@ $('#btnSave').on('click', function () {
     if (isJsonValidate(Json)) {
         JsonData = {
             id: !$(this).attr('data-id') ? 0 : $(this).attr('data-id'),
-            username : $('#username').val(),
-            password : $('#password').val(),
+            username: $('#username').val(),
+            password: $('#password').val(),
             nombre: $('#nombre').val(),
             apellido: $('#apellido').val(),
             identificacion: $('#iden').val(),
@@ -25,16 +25,24 @@ $('#btnSave').on('click', function () {
             dirreccion: $('#direc').val(),
             telefono: $('#telefono').val()
         };
-        PostService(JSON.stringify(JsonData), "vendors/save", (res) => {
-            $('#modalVende').modal('hide');
-            LoadTable();
+        PostService(JSON.stringify(JsonData), "vendors/save", res => {
+            console.log(res);
+            if (res.id) {
+                $('#modalVende').modal('hide');
+                toastr.success("Vendedor registrado con exito", "EmpresaXYZ");
+                LoadTable();
+            } else {
+                toastr.error("Verifique su identificación, ya existe", "EmpresaXYZ");
+            }
         });
     }
 });
 
 function LoadTable() {
     $('#grid-vendedores tbody tr').remove();
-    GetService("/vendors/get", (res) => {
+    nombre = $('#search').val();
+    GetService(`/vendors/get?name=${nombre}`, (res) => {
+        console.log(res);
         $.each(res, (i, e) => {
             $('#grid-vendedores tbody').append(`<tr>
                 <td>${e.nombre}</td>
@@ -48,6 +56,7 @@ function LoadTable() {
         $('#grid-vendedores tbody tr td').find('.bxs-pencil').on('click', function () {
             id = $(this).attr('data-id');
             GetService(`vendors/getById/${id}`, (res) => {
+                console.log(res);
                 ResetForm('#modalVende');
                 $('#btnSave').attr('data-id', res.id);
                 $('#username').val(res.username);
@@ -55,7 +64,7 @@ function LoadTable() {
                 $('#nombre').val(res.nombre);
                 $('#apellido').val(res.apellido);
                 $('#iden').val(res.identificacion);
-                $('#fecha_naci').text(new Date(res.fecha_naci).toLocaleDateString());
+                $('#fecha_naci').val(res.fecha_naci);
                 $('#direc').val(res.dirreccion);
                 $('#telefono').val(res.telefono);
                 $('#modalVende').modal('show');
@@ -65,11 +74,15 @@ function LoadTable() {
         $('#grid-vendedores tbody tr td').find('.bxs-trash-alt').on('click', function () {
             id = $(this).attr('data-id');
             if (confirm('¿Quiere eliminar este vendedor?')) {
-                GetService(`vendors/deleteById/${id}`,() => LoadTable());
+                GetService(`vendors/deleteById/${id}`, () => LoadTable());
             }
         });
     });
 }
+
+$('#search').on('change', function () {
+    LoadTable(); 
+});
 
 $(document).ready(function () {
     LoadTable();

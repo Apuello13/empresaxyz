@@ -15,8 +15,7 @@
               integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
         <script src="https://kit.fontawesome.com/23412c6a8d.js"></script>
         <link rel="stylesheet" href="/css/login.css">
-
-
+        <link rel="stylesheet" href="/css/toastr.css">
     </head>
 
     <body>
@@ -71,42 +70,37 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
         integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
-
+        <script src="./js/toastr.min.js"></script>
         <script>
-                                $(document).ready(function () {
+            $(document).ready(function () {
 
-                                    $('.owl-carousel').owlCarousel({
-                                        loop: true,
-                                        autoplay: true,
-                                        autoplayTimeout: 2000,
-                                        autoplayHoverPause: true,
-                                        items: 1
-                                    });
-                                });
-            $('#btn-h').on('click', function  (e) {
-                var object = {};
+                $('.owl-carousel').owlCarousel({
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 2000,
+                    autoplayHoverPause: true,
+                    items: 1
+                });
+            });
+            $('#btn-h').on('click', function (e) {
                 e.preventDefault();
-                data = new FormData(document.getElementById("form"));
-                data.forEach((value, key) => object[key] = value);
-                var json = JSON.stringify(object);
-                       $.ajax("/vendors/login",{
-            type: "POST",
-            data: json,
-            contentType: "application/json",
-            success: function (res){
-                if(res.length == 0){
-                    alert('No estas registrado en el sistema')
-                }else{
-                    localStorage.setItem('session', JSON.stringify({id: res[0].split(",")[0], nombre: res[0].split(",")[1]}));
-                    window.location = '/dashboard';
-                }
-                /*alertify.warning('Las credenciales son incorrectas')*/
-            },
-            error: function (error){
-                console.log(error);
-                /*alertify.error(error)*/
-            }
-        });
+                var json = {username: $('#user').val(), password: $('#pswd').val()};
+                $.ajax("/vendors/login", {
+                    type: "POST",
+                    data: JSON.stringify(json),
+                    contentType: "application/json",
+                    success: function (res) {
+                        if(!res){
+                            toastr.warning("Las credenciales ingresadas no son correctas", "EmpresaXYZ");
+                        }else{
+                            localStorage.setItem('session', JSON.stringify({id: res.id, nombre: res.nombre}));
+                            window.location = '/dashboard';
+                        }
+                    },
+                    error: function (error) {
+                        toastr.error(error, "EmpresaXYZ");
+                    }
+                });
             });
         </script>
     </body>

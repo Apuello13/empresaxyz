@@ -48,11 +48,6 @@ function isJsonValidate(Json) {
 }
 
 $(document).ready(function () {
-    /*if (!localStorage.getItem('session')) {
-     alert('Inicie sesión para continuar');
-     window.location = '/';
-     } else {
-     }*/
     $('.welcome').text(`Bienvenido ${JSON.parse(localStorage.getItem('session')).nombre}`);
     path = window.location.pathname;
     $.each($('.list-items'), function (i, e) {

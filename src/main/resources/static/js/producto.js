@@ -15,22 +15,29 @@ $('.btn-add').on('click', function () {
 $('#btnSavePro').on('click', function () {
     if (isJsonValidate(Jsonp)) {
         JsonDatapro = {
-        id: !$(this).attr('data-id') ? 0 : $(this).attr('data-id'),
-        nombre:$('#nombre').val(),
-        valor:$('#valor').val(),
-        cantidad:$('#cantidad').val(),
-        categoria:$('#categoria').val(),
-        promocion:$('#promocion').val()
+            id: !$(this).attr('data-id') ? 0 : $(this).attr('data-id'),
+            nombre: $('#nombre').val(),
+            codigo: $('#cod').val(),
+            valor: $('#valor').val(),
+            cantidad: $('#cantidad').val(),
+            categoria: $('#categoria').val(),
+            promocion: $('#promocion').val()
         };
-        PostService(JSON.stringify(JsonDatapro), "/produc/saveP",(res) => {
-            $('#modalPro').modal('hide');
-            LoadTable();
+        PostService(JSON.stringify(JsonDatapro), "/produc/saveP", (res) => {
+            if (res.id) {
+                $('#modalPro').modal('hide');
+                toastr.success("Se ha registrado el producto en el sistema", "EmpresaXYZ");
+                LoadTable();
+            }else{
+                toastr.error("Verifique el código del producto, ya existe", "EmpresaXYZ");
+            }
         });
     }
 });
 function LoadTable() {
     $('#grid-producto tbody tr').remove();
-    GetService("/produc/get", (res) => {
+    nombre = $('#search').val();
+    GetService(`/produc/get?nombre=${nombre}`, (res) => {
         $.each(res, (i, x) => {
             $('#grid-producto tbody').append(`<tr>
                 <td>${x.nombre}</td>
@@ -47,11 +54,11 @@ function LoadTable() {
                 ResetForm('#modalPro');
                 $('#btnSavePro').attr('data-id', res.id);
                 $('#nombre').val(res.nombre);
+                $('#cod').val(res.codigo);
                 $('#valor').val(res.valor);
                 $('#cantidad').val(res.cantidad);
                 $('#categoria').val(res.categoria);
                 $('#promocion').val(res.promocion);
-             
                 $('#modalPro').modal('show');
             });
         });
@@ -59,13 +66,15 @@ function LoadTable() {
         $('#grid-producto tbody tr td').find('.bxs-trash-alt').on('click', function () {
             id = $(this).attr('data-id');
             if (confirm('¿Quiere eliminar este ptoducto?')) {
-                GetService(`produc/eliminarBy/${id}`,() => LoadTable());
+                GetService(`produc/eliminarBy/${id}`, () => LoadTable());
             }
         });
     });
 }
 
-
+$('#search').on('change', function () {
+    LoadTable();
+});
 
 $(document).ready(function () {
     LoadTable();

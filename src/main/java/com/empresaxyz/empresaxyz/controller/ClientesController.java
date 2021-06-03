@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -25,30 +26,39 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/clients")
 public class ClientesController {
+
     @Autowired
     private ClientesDao clientedao;
-    
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Cliente saveCliente(@RequestBody Cliente cliente){
-        return clientedao.save(cliente);
+    public Cliente saveCliente(@RequestBody Cliente cliente) {
+        if (clientedao.existsByIdentificacion(cliente.getIdentificacion()) & cliente.getId() == 0) {
+            return cliente = null;
+        } else {
+            return clientedao.save(cliente);
+        }
     }
-    
+
     @GetMapping(value = "/get")
     @ResponseBody
-    public List<Cliente> getClientes(){
-        return clientedao.findAll();
+    public List<Cliente> getClientes(@RequestParam String nombre) {
+        if (nombre == "") {
+            return clientedao.findAll();
+        } else {
+            return clientedao.findByNombreIsContaining(nombre);
+        }
     }
-    
+
     @GetMapping(value = "/getById/{id}")
     @ResponseBody
-    public Optional<Cliente> getClienteById(@PathVariable("id") Long id){
+    public Optional<Cliente> getClienteById(@PathVariable("id") Long id) {
         return clientedao.findById(id);
     }
-    
+
     @GetMapping(value = "/deleteById/{id}")
     @ResponseBody
-    public void deleteClienteById(@PathVariable("id") Long id){
+    public void deleteClienteById(@PathVariable("id") Long id) {
         clientedao.deleteById(id);
     }
 }

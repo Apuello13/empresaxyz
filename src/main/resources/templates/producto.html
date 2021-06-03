@@ -2,7 +2,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout.html}">
     <head>
-        <title>Prductos</title>
+        <title>Productos</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -11,20 +11,22 @@
             <div class="container-add">
                 <button class="btn-add bx bx-plus" title="Agregar"></button>
             </div>
+            <div>
+                <i class='bx bx-search-alt'></i>
+                <input id="search" type="text">
+            </div>
             <table id="grid-producto" class="table">
                 <thead>
                     <tr>
                         <th data-column-id="nombre">Nombre</th>
                         <th data-column-id="valor">Valor</th>
-                         <th data-colum-id="cantidad">Cantidad</th>
-                          <th data-colum-id="categoria">Categoria</th>
+                        <th data-colum-id="cantidad">Cantidad</th>
+                        <th data-colum-id="categoria">Categoria</th>
                         <th data-formatter="edit">Editar</th>
                         <th data-formatter="delete">Eliminar</th>
                     </tr>
                 </thead>
-                <tbody>
-                    
-                </tbody>
+                <tbody></tbody>
             </table>
             <div class="modal fade" id="modalPro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -39,36 +41,42 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
+                                        <label>Codigo</label>
+                                        <input type="text" class="my-form-control" id="cod">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
                                         <label>Nombre</label>
-                                        <input type="text" class="form-control" id="nombre">
+                                        <input type="text" class="my-form-control" id="nombre">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label>Valor</label>
-                                        <input type="text" class="form-control" id="valor">
+                                        <input type="text" class="my-form-control" id="valor">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label>Cantidad</label>
-                                        <input type="text" class="form-control" id="cantidad">
+                                        <input type="text" class="my-form-control" id="cantidad">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label>Categoria</label>
-                                        <input type="text" class="form-control" id="categoria">
+                                        <input type="text" class="my-form-control" id="categoria">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label>Promocion</label>
-                                        <input type="text" class="form-control" id="promocion">
+                                        <input type="text" class="my-form-control" id="promocion">
                                     </div>
                                     <a href="producto.html"></a>
                                 </div>
-                               
+
                             </div>
                         </div>
                         <div class="modal-footer">

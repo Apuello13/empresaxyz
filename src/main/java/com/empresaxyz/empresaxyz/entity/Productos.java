@@ -6,15 +6,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 @Entity
 @Table( name="productos" )
-public class Producto {
+public class Productos {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String codigo;
     @Column
     private String nombre;
     @Column
@@ -25,6 +30,8 @@ public class Producto {
     private String categoria;
     @Column
     private double promocion;
+    @OneToMany(mappedBy = "producto")
+    private List<Cotizacion> cotizaciones;
 
     public Long getId() {
         return id;
@@ -74,5 +81,11 @@ public class Producto {
         this.promocion = promocion;
     }
     
+    public String getCodigo(){
+        return this.codigo;
+    }
     
+    public void setCodigo(String codigo){
+        this.codigo = codigo;
+    }
 }

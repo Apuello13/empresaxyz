@@ -6,6 +6,7 @@
 package com.empresaxyz.empresaxyz.dao;
 
 import com.empresaxyz.empresaxyz.entity.Productos;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +17,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductosDao extends JpaRepository<Productos, Long>{
 
-    
+    public boolean existsByCodigo(String codigo);
+    public List<Productos> findByNombreIsContaining(String nombre);
 }

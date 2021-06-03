@@ -6,28 +6,37 @@ $('.btn-add').on('click', function () {
 });
 
 $('#btnSave').on('click', function () {
-    if(isJsonValidate(Json)){
+    if (isJsonValidate(Json)) {
         JsonData = {
-          id : !$(this).attr('data-id') ? 0 : $(this).attr('data-id'),
-          nombre : $('#nombre').val(),
-          tipo_persona : $('#tipo').val(),
-          identificacion : $('#iden').val(),
-          telefono : $('#phone').val(),
-          direccion : $('#direc').val(),
-          empresa : $('#empresa').val(),
-          correo : $('#email').val()
+            id: !$(this).attr('data-id') ? 0 : $(this).attr('data-id'),
+            nombre: $('#nombre').val(),
+            tipo_persona: $('#tipo').val(),
+            identificacion: $('#iden').val(),
+            telefono: $('#phone').val(),
+            direccion: $('#direc').val(),
+            empresa: $('#empresa').val(),
+            correo: $('#email').val()
         };
-        PostService(JSON.stringify(JsonData), 'clients/save', () => {
-            $('#modalClient').modal('hide');
-            LoadTable();
+        PostService(JSON.stringify(JsonData), 'clients/save', (res) => {
+            if (res.id) {
+                $('#modalClient').modal('hide');
+                toastr.success("Cliente regitrado en el sistema", "EmpresaXYZ");
+                LoadTable();
+            }else{
+                toastr.error("Verifique la identificación, ya existe", "EmpresaXYZ");
+            }
         });
     }
 });
 
-function LoadTable(){
+function LoadTable() {
     $('#grid-clientes tbody tr').remove();
-    GetService('clients/get', res => {
-       $.each(res, (i, e) => {
+    nombre = $('#search').val();
+    GetService(`clients/get?nombre=${nombre}`, res => {
+        if(!res){
+            $('.empty').css('display', 'block');
+        }
+        $.each(res, (i, e) => {
             $('#grid-clientes tbody').append(`<tr>
                 <td>${e.nombre}</td>
                 <td>${e.tipo_persona}</td>
@@ -40,6 +49,7 @@ function LoadTable(){
             id = $(this).attr('data-id');
             GetService(`clients/getById/${id}`, res => {
                 ResetForm('#modalClient');
+                $('#btnSave').attr('data-id', res.id);
                 $('#nombre').val(res.nombre);
                 $('#iden').val(res.identificacion);
                 $('#tipo').val(res.tipo_persona);
@@ -50,15 +60,19 @@ function LoadTable(){
                 $('#modalClient').modal('show');
             });
         });
-        
-        $('#grid-clientes tbody tr').find('.bxs-trash-alt').on('click', function (){
+
+        $('#grid-clientes tbody tr').find('.bxs-trash-alt').on('click', function () {
             id = $(this).attr('data-id');
-            if(confirm('¿Deseas eliminar este cliente?')){
-             GetService(`clients/deleteById/${id}`, () => LoadTable());   
+            if (confirm('¿Deseas eliminar este cliente?')) {
+                GetService(`clients/deleteById/${id}`, () => LoadTable());
             }
         });
     });
 }
+
+$('#search').on('change', function () {
+    LoadTable(); 
+});
 
 $(document).ready(function () {
     LoadTable();

@@ -22,7 +22,7 @@ public class Cliente {
     @Column
     private String tipo_persona;
     @Column
-    private int identificacion;
+    private String identificacion;
     @Column
     private String telefono;
     @Column
@@ -63,11 +63,11 @@ public class Cliente {
         this.tipo_persona = tipo_persona;
     }
 
-    public int getIdentificacion() {
+    public String getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(int identificacion) {
+    public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
     }
 

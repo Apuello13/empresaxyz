@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -25,37 +26,46 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/vendors")
 public class VendedoresController {
+
     @Autowired
     private VendedoresDao vendedoresDao;
-    
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Vendedor saveVendedor(@RequestBody Vendedor vendedor){
-        return vendedoresDao.save(vendedor);
+    public Vendedor saveVendedor(@RequestBody Vendedor vendedor) {
+        if (vendedoresDao.existsByIdentificacion(vendedor.getIdentificacion()) & vendedor.getId() == 0) {
+            return vendedor = null;
+        } else {
+            return vendedoresDao.save(vendedor);
+        }
     }
-    
+
     @GetMapping(value = "/get")
     @ResponseBody
-    public List<Vendedor> getVendedores(){
-        return vendedoresDao.findAll();
+    public List<Vendedor> getVendedores(@RequestParam String name) {
+        if(name == ""){
+            return vendedoresDao.findAll();
+        }else{
+            return vendedoresDao.findByNombreIsContaining(name);
+        }
     }
-    
+
     @GetMapping(value = "/getById/{id}")
     @ResponseBody
-    public Optional<Vendedor> getVendedorById(@PathVariable("id") Long id){
+    public Optional<Vendedor> getVendedorById(@PathVariable("id") Long id) {
         return vendedoresDao.findById(id);
     }
-    
+
     @GetMapping(value = "/deleteById/{id}")
     @ResponseBody
-    public void deleteVendedorById(@PathVariable("id") Long id){
+    public void deleteVendedorById(@PathVariable("id") Long id) {
         vendedoresDao.deleteById(id);
     }
-    
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public List<String> loginVendedor(@RequestBody Vendedor vendedor){
-        return vendedoresDao.autenticar(vendedor.getUsername(), vendedor.getPassword());
+    public Vendedor loginVendedor(@RequestBody Vendedor vendedor) {
+        return vendedoresDao.findByUsernameAndPassword(vendedor.getUsername(), vendedor.getPassword());
     }
-    
+
 }

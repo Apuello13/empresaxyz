@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.empresaxyz.empresaxyz.entity;
 
 import java.io.Serializable;
@@ -13,7 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.List;
 
 /**
  *
@@ -26,17 +25,21 @@ public class Cotizacion implements Serializable {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String titulo;
     @ManyToOne
     private Vendedor vendedor;
     @ManyToOne
     private Cliente cliente;
+    @ManyToOne
+    private Productos producto;
+    @OneToMany(mappedBy = "cotizacion")
+    private List<DetalleCotizacion> detalle;
     private String estado;
+    @Temporal( TemporalType.DATE )
     private Date created;
+    @Temporal( TemporalType.DATE )
     private Date fechaContratacion;
-
-    public Cotizacion() {
-        super();
-    }
+    private String description;
 
     public Long getId() {
         return id;
@@ -76,5 +79,27 @@ public class Cotizacion implements Serializable {
 
     public void setFechaContratacion(Date fechaContratacion) {
         this.fechaContratacion = fechaContratacion;
+    }
+    public String getTitulo() {
+            return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+            this.titulo = titulo;
+    }
+    public String getDescription() {
+            return description;
+    }
+    public void setDescription(String description) {
+            this.description = description;
+    }
+    public void setProducto(Productos producto){
+        this.producto = producto;
+    }
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
+    public List<DetalleCotizacion> getDetalle(){
+        return detalle;
     }
 }
